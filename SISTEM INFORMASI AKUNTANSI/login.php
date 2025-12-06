@@ -51,39 +51,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Sistem Informasi Akuntansi</title>
+    <link rel="icon" type="image/png" href="Foto/accounting.png">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="login-body">
+    <div class="login-background">
+        <div class="login-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
     <div class="login-container">
         <div class="login-box">
             <div class="login-header">
-                <h1>🔐 Sistem Informasi Akuntansi</h1>
+                <div class="login-icon-wrapper">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1>Sistem Informasi Akuntansi</h1>
                 <p>Silakan login untuk melanjutkan</p>
             </div>
             
             <?php if ($error): ?>
-                <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span><?php echo htmlspecialchars($error); ?></span>
+                </div>
             <?php endif; ?>
             
             <form method="POST" action="" class="login-form">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required autofocus placeholder="Masukkan username">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        Username
+                    </label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="username" name="username" required autofocus placeholder="Masukkan username">
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Masukkan password">
+                    <label for="password">
+                        <i class="fas fa-key"></i>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" required placeholder="Masukkan password">
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="eye-icon"></i>
+                        </button>
+                    </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
             
             <div class="login-footer">
-                <p><small>Default: admin / admin123</small></p>
+                <p><i class="fas fa-shield-alt"></i> Sistem aman dan terenkripsi</p>
             </div>
         </div>
     </div>
+    
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 </html>
 
